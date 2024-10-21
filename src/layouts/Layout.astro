@@ -1,50 +1,173 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
+
+import Navigation from "components/Navigation.astro";
+
 interface Props {
+	name: string;
 	title: string;
+	description: string;
+	banner?: Banner;
 }
 
-const { title } = Astro.props;
+export interface Banner {
+	url: string;
+	width: number;
+	height: number;
+	alt: string;
+	twitter_card: string;
+}
+
+const {
+	name,
+	title,
+	description,
+	banner,
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
+		<!-- You know the drill... -->
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- SEO Stuff -->
+		<link rel="canonical" href={Astro.url} />
+		<link rel="sitemap" href="/sitemap-index.xml" />
 		<meta name="generator" content={Astro.generator} />
+
+		<!-- Favicon & Page Theme -->
+		<link rel="icon" type="image/svg+xml" href="/images/logo.svg" />
+		<meta name="color-scheme" content="dark" />
+		<meta name="theme-color" content="#c4a6f2" />
+
+		<!-- Preload Fonts -->
+		<link
+			rel="preload"
+			href="/fonts/Manrope-VariableFont_wght.woff2"
+			as="font"
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="preload"
+			href="/fonts/iosevka-fixed_latin-ext.woff2"
+			as="font"
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="preload"
+			href="/fonts/iosevka-fixed-extralight_latin-ext.woff2"
+			as="font"
+			crossorigin="anonymous"
+		/>
+
+		<!-- OpenGraph Page Metadata -->
+		<meta property="og:site_name" content={name} />
+		<meta property="og:title" content={title} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url} />
+		<meta property="og:description" content={description} />
+
+		{
+			banner && (
+				<>
+					<meta
+						property="og:image"
+						content={new URL(banner.url, Astro.url)}
+					/>
+					<meta property="og:image:type" content="image/png" />
+					<meta property="og:image:alt" content={banner.alt} />
+					<meta
+						property="og:image:width"
+						content={banner.width.toString()}
+					/>
+					<meta
+						property="og:image:height"
+						content={banner.height.toString()}
+					/>
+					<meta
+						property="twitter:card"
+						content={banner.twitter_card}
+					/>
+				</>
+			)
+		}
+
+		<ViewTransitions />
+
 		<title>{title}</title>
 	</head>
+
 	<body>
+		<Navigation />
 		<slot />
 	</body>
 </html>
+
 <style is:global>
+	@font-face {
+		font-family: "ClashDisplay-Variable";
+		src: url("ClashDisplay-Variable.woff2") format("woff2");
+		font-weight: 200 700;
+		font-display: swap;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: "GeneralSans-Variable";
+		src: url("GeneralSans-Variable.woff2") format("woff2");
+		font-weight: 200 700;
+		font-display: swap;
+		font-style: normal;
+	}
+
 	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
+		--base-hue: 264deg;
+		
+		--background-primary: var(--base-hue), 8%, 14%;
+		
+		--foreground-primary: var(--base-hue), 45%, 100%;
+		--foreground-secondary: var(--base-hue), 75%, 86%;
+		
+		--accent-primary: var(--base-hue), 65%, 74%;
+		
+		--font-display: "ClashDisplay-Variable", system-ui, sans-serif;
+		--font-text: "GeneralSans-Variable", monospace;
 	}
+	
 	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
+		color-scheme: dark;
+		scrollbar-width: thin;
+		scrollbar-color: hsla(var(--foreground-secondary), 0.5) hsl(var(--background-secondary));
+		font-family: var(--font-text);
+		font-size: 62.5%;
+		height: 100%;
+		background: hsl(var(--background-primary));
+		color: hsl(var(--foreground-primary));
 	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
+
+	body {
+		margin: 0;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	::selection {
+		background-color: hsla(var(--foreground-secondary), 0.75);
+		color: hsl(var(--background-primary));
+	}
+
+	:focus-visible {
+		outline: 2px solid hsl(var(--accent-primary));
+		outline-offset: 2px;
 	}
 </style>

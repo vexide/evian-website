@@ -1,0 +1,73 @@
+<nav class="navigation">
+    <ul>
+        <li class="title">
+            <a href="/">
+                Evian
+            </a>
+        </li>
+        <!-- <li>
+            <a href="/docs">Docs</a>
+        </li> -->
+        <li>
+            <a href="https://docs.rs/crate/evian/latest/" target="_blank" rel="noreferrer noopener">API</a>
+        </li>
+    </ul>
+</nav>
+
+<style>
+    .navigation {
+        flex: 0 0 auto;
+        inline-size: 100%;
+        position: absolute;
+        z-index: 1;
+    }
+    
+    .navigation ul {
+        block-size: 72px;
+        list-style: none;
+        display: flex;
+        gap: 32px;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        padding-inline: 36px;
+    }
+    
+    .navigation a {
+        padding-inline: 4px;
+        font-size: 1.6rem;
+        color: hsl(var(--foreground-secondary));
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: 50ms ease border-color;
+    }
+    
+    .navigation a:focus-visible {
+        border-radius: 4px;
+        outline-offset: 4px;
+        border-color: transparent !important;
+    }
+
+    .navigation .title a {
+        padding: 0;
+        color: hsl(var(--foreground-primary));
+        font-family: var(--font-display);
+        font-size: 2.4rem;
+        font-weight: 400;
+        text-transform: lowercase;
+    }
+
+    .navigation a:hover {
+        border-bottom: 1px solid;
+    }
+
+    @media screen and (max-width: 1024px) {
+		.navigation ul {
+			padding-inline: 24px;
+		}
+
+        .navigation .title {
+            flex: 1 1 auto;
+        }
+	}
+</style>
