@@ -100,13 +100,15 @@ const {
 		<title>{title}</title>
 	</head>
 
-	<body>
+	<body class="noise">
 		<Navigation />
 		<slot />
 	</body>
 </html>
 
 <style is:global>
+	@import url('https://fonts.googleapis.com/css2?family=Brygada+1918:ital,wght@0,400..700;1,400..700&display=swap');
+
 	@font-face {
 		font-family: "ClashDisplay-Variable";
 		src: url("/ClashDisplay-Variable.woff2") format("woff2");
@@ -115,26 +117,10 @@ const {
 		font-style: normal;
 	}
 
-	@font-face {
-		font-family: "GeneralSans-Variable";
-		src: url("/GeneralSans-Variable.woff2") format("woff2");
-		font-weight: 200 700;
-		font-display: swap;
-		font-style: normal;
-	}
-
 	:root {
-		--base-hue: 264deg;
-		
-		--background-primary: var(--base-hue), 8%, 14%;
-		
-		--foreground-primary: var(--base-hue), 45%, 100%;
-		--foreground-secondary: var(--base-hue), 75%, 86%;
-		
-		--accent-primary: var(--base-hue), 65%, 74%;
-		
 		--font-display: "ClashDisplay-Variable", system-ui, sans-serif;
-		--font-text: "GeneralSans-Variable", monospace;
+		--font-text: "Brygada 1918", monospace;
+		--border: #3f4043; /* #3f4043 */
 	}
 	
 	html {
@@ -144,13 +130,32 @@ const {
 		font-family: var(--font-text);
 		font-size: 62.5%;
 		height: 100%;
-		background: hsl(var(--background-primary));
+        background: linear-gradient(90deg, #282b31, #1c1e23 20%);
 		color: hsl(var(--foreground-primary));
+		color: #8a8986;
+		line-height: 1.5;
 	}
 
-	body {
-		margin: 0;
+	::selection {
+		background-color: hsl(202, 100%, 67%, 0.5);
+		color: #0d1016;
+	}
+
+	.noise::before {
+		content: "";
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		left: 0;
+		width: 100%;
 		height: 100%;
+		background: url("/noise.png");
+	}
+	
+	body {
+		position: relative;
+		min-height: 100vh;
+		margin: 0;
 		display: flex;
 		flex-direction: column;
 	}
@@ -159,11 +164,6 @@ const {
 	*::before,
 	*::after {
 		box-sizing: border-box;
-	}
-
-	::selection {
-		background-color: hsla(var(--foreground-secondary), 0.75);
-		color: hsl(var(--background-primary));
 	}
 
 	:focus-visible {

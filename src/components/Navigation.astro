@@ -6,11 +6,8 @@
             </a>
         </li>
         <!-- <li>
-            <a href="/docs">Docs</a>
-        </li> -->
-        <li>
             <a href="https://docs.rs/crate/evian/latest/" target="_blank" rel="noreferrer noopener">API</a>
-        </li>
+        </li> -->
     </ul>
 </nav>
 
@@ -18,19 +15,19 @@
     .navigation {
         flex: 0 0 auto;
         inline-size: 100%;
-        position: absolute;
         z-index: 1;
+		/* border-bottom: 1px solid var(--border); */
+        position: relative;
     }
-    
+
     .navigation ul {
-        block-size: 72px;
+        block-size: 32px;
         list-style: none;
         display: flex;
-        gap: 32px;
         align-items: center;
         padding: 0;
         margin: 0;
-        padding-inline: 36px;
+        padding-inline: 8px;
     }
     
     .navigation a {
@@ -50,9 +47,9 @@
 
     .navigation .title a {
         padding: 0;
-        color: hsl(var(--foreground-primary));
+        color: #bfbdb6;
         font-family: var(--font-display);
-        font-size: 2.4rem;
+        font-size: 1.6rem;
         font-weight: 400;
         text-transform: lowercase;
     }
@@ -60,14 +57,4 @@
     .navigation a:hover {
         border-bottom: 1px solid;
     }
-
-    @media screen and (max-width: 1024px) {
-		.navigation ul {
-			padding-inline: 24px;
-		}
-
-        .navigation .title {
-            flex: 1 1 auto;
-        }
-	}
 </style>

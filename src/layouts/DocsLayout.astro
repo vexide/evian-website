@@ -1,0 +1,155 @@
+---
+import Layout from "./Layout.astro";
+---
+
+<Layout name="lorem" title="ipsum" description="docs test">
+    <div class="docs-layout">
+        <aside class="docs-sidebar noise">
+            <span>Introduction</span>
+
+            <div class="test">
+                <svg width="298" height="38" viewBox="0 0 298 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g filter="url(#filter0_i_1_12)">
+                    <path d="M279.343 1H5C2.79086 1 1 2.79086 1 5V33C1 35.2091 2.79085 37 4.99999 37H281L296.172 21.8284C297.734 20.2663 297.734 17.7337 296.172 16.1716L282.172 2.17157C281.421 1.42143 280.404 1 279.343 1Z" fill="url(#paint0_linear_1_12)"/>
+                    </g>
+                    <path d="M279.343 1H5C2.79086 1 1 2.79086 1 5V33C1 35.2091 2.79085 37 4.99999 37H281L296.172 21.8284C297.734 20.2663 297.734 17.7337 296.172 16.1716L282.172 2.17157C281.421 1.42143 280.404 1 279.343 1Z" stroke="#101319"/>
+                    <defs>
+                    <filter id="filter0_i_1_12" x="0.5" y="-1.5" width="297.343" height="39" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                    <feOffset dy="-2"/>
+                    <feGaussianBlur stdDeviation="4"/>
+                    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 0.0518 0 0 0 0 0.0639333 0 0 0 0 0.0882 0 0 0 0.25 0"/>
+                    <feBlend mode="normal" in2="shape" result="effect1_innerShadow_1_12"/>
+                    </filter>
+                    <linearGradient id="paint0_linear_1_12" x1="197.551" y1="1" x2="197.551" y2="37" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#152832"/>
+                    <stop offset="1" stop-color="#1C2326"/>
+                    </linearGradient>
+                    </defs>
+                    </svg>
+                    
+                    
+                    
+                What is evian?
+            </div>
+            <div>Why is evian?</div>
+            <div>How is evian?</div>
+            <div>Where is evian?</div>
+        </aside>
+        <div class="docs-content noise">
+            <article class="docs-page markdown-body">
+                <h1 class="page-title">What is evian?</h1>
+                <slot />
+            </article>
+            <aside class="table-of-contents">
+            </aside>
+        </div>
+    </div>
+</Layout>
+
+<style>
+    .test {
+        position: relative;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-self: center;
+        width: 100%;
+        font-size: 14px;
+        padding: 0 12px;
+        font-family: var(--font-display);
+        color: #87c5e9;
+        text-shadow:
+			0 0 5px hsl(202, 100%, 67%),
+			0 0 24px hsl(202, 100%, 67%);
+    }
+
+    .docs-sidebar > div {
+        position: relative;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-self: center;
+        width: 100%;
+        font-size: 14px;
+        padding: 0 12px;
+        font-family: var(--font-display);
+    }
+
+    .docs-sidebar span {
+        font-family: var(--font-display);
+        font-size: 14px;
+        display: block;
+        padding: 16px;
+    }
+
+    .test svg {
+        z-index: -1;
+        position: absolute;
+        top: 0;
+        left: 0;
+        filter: drop-shadow(0 2px 5px #131720);
+    }
+
+    .page-title {
+        font-size: 5.6rem;
+        font-weight: 300 !important;
+    }
+
+    .docs-layout {
+        display: flex;
+        flex: 1 1 auto;
+        min-height: 100%;
+    }
+
+    .docs-sidebar,
+    .docs-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .docs-sidebar {
+        margin-right: -1px;
+        border-top: 1px solid var(--border);
+		border-right: 1px solid var(--border);
+		border-top-right-radius: 16px;
+        background: #0d1016 !important;
+        width: 280px;
+        z-index: 10;
+    }
+
+    .docs-content {
+        overflow: hidden;
+        display: flex;
+		flex: 1;
+        padding-inline: 64px;
+		border-top: 1px solid var(--border);
+		border-left: 1px solid var(--border);
+		border-top-left-radius: 16px;
+		background: linear-gradient(45deg, #1f2127, #15161b);
+    }
+
+    .docs-page {
+        max-width: 768px;
+        margin: 0 auto;
+    }
+    
+    .markdown-body {
+        font-size: 16px;
+        line-height: 2;
+    }
+
+    .markdown-body :global(h1),
+    .markdown-body :global(h2),
+    .markdown-body :global(h3),
+    .markdown-body :global(h4),
+    .markdown-body :global(h5),
+    .markdown-body :global(h6) {
+        color: #bfbdb6;
+        font-family: var(--font-display);
+        font-weight: 400;
+    }
+</style>
